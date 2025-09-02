@@ -294,7 +294,7 @@ on_demand_throughput = {
 - **ℹ️ Declare Secondary KMS Provider:** For table replication, you must declare a secondary AWS provider, as each replica needs a regional KMS key, either newly created or referenced via a datasource.
 - **ℹ️ Global vs Local Index Performance:** Understand the performance difference between global and local indexes, and use cases requiring intensive indexing.
 - **ℹ️ Avoid Overly Permissive AWS Principal:** When defining a resource policy for a table, Do not use `"*"` as the AWS Principal, as it is too permissive and will be rejected by the AWS API.
-- **ℹ️ Disable Resource Removal:** Once enabled, the On-Demand Throughput feature cannot be removed; set `max_write_request_units` and `max_read_request_units` to `-1` to disable it. This is due to how the module manages state.
+- **ℹ️ Managing On-Demand Throughput Setting:** Once enabled, the On-Demand Throughput feature cannot be removed; set `max_write_request_units` and `max_read_request_units` to `-1` to disable it. This is due to how the module manages state.
 
 
 
