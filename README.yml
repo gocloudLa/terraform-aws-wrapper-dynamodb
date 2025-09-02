@@ -14,7 +14,7 @@ quick_start: |
   ```hcl
   dynamodb_parameters = {
     "00" = {
-      ## Valores requeridos para tabla
+      ## Required values for the table
       hash_key            = "id"
       range_key           = "title"
       billing_mode        = "PROVISIONED"
@@ -22,7 +22,7 @@ quick_start: |
       read_capacity       = 10
       write_capacity      = 10
   
-      ## Atributos para nuevas columnas
+      ## Attributes for new columns
       attributes = [
         {
           name = "id"
@@ -210,6 +210,7 @@ important_notes: |
   - **ℹ️ Global vs Local Index Performance:** Understand the performance difference between global and local indexes, and use cases requiring intensive indexing.
   - **ℹ️ Avoid Overly Permissive AWS Principal:** When defining a resource policy for a table, Do not use `"*"` as the AWS Principal, as it is too permissive and will be rejected by the AWS API.
   - **ℹ️ Disable Resource Removal:** Once enabled, the On-Demand Throughput feature cannot be removed; set `max_write_request_units` and `max_read_request_units` to `-1` to disable it. This is due to how the module manages state.
+input_table: |
   | hash_key | The attribute to use as the hash (partition) key. Must also be defined as an attribute | `string` | `null` | no |
   | range_key | The attribute to use as the range (sort) key. Must also be defined as an attribute | `string` | `null` | no |
   | billing_mode | Controls how you are billed for read/write throughput and how you manage capacity. | `string` | `"PAY_PER_REQUEST"` | no |
