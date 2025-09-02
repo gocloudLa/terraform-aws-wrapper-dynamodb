@@ -54,7 +54,7 @@ features:
           dynamodb_parameters = {
             "00" = {
               ...
-              ## Configuracíón de autoescalado de índices
+              ## Index auto-scaling configuration
               #autoscaling_indexes = {
               #  TitleIndex = {
               #    read_max_capacity  = 10
@@ -63,13 +63,13 @@ features:
               #    write_min_capacity = 5
               #  }
               #}
-              ## Configuración de umbral de autoescalado
+              ## Auto-scaling threshold configuration
               #autoscaling_defaults = {
               #  scale_in_cooldown  = 0
               #  scale_out_cooldown = 0
               #  target_value       = 70
               #}
-              ## Configuración de índices secundarios
+              ## Secondary index configuration
               # global_secondary_indexes = [
               #   {
               #     name               = "TitleIndex"
@@ -149,9 +149,9 @@ features:
           ```
   - icon: 📄
     title: Define resource policy in the table
-    short_description: It allows defining specific performance.
+    short_description: Allows you to define fine-grained access permissions on the table.
     long_description: |
-      It allows defining specific performance.
+      Allows you to define fine-grained access permissions on the table, controlling which principals can perform which actions.
     examples:
       - title: Configuration Code
         code: |
@@ -177,9 +177,9 @@ features:
           ```
   - icon: 📊
     title: Define On Demand Throughput for the table and secondary global indexes
-    short_description: It allows defining secondary indexes in the table.
+    short_description: Allows configuring On-Demand Throughput for the table and its Global Secondary Indexes.
     long_description: |
-      It allows defining secondary indexes in the table.
+      Allows configuring On-Demand Throughput (max read/write request units) for the table and its Global Secondary Indexes.
     examples:
       - title: Configuration Code
         code: |
@@ -192,25 +192,24 @@ features:
                     projection_type    = "INCLUDE"
                     non_key_attributes = ["id"]
           
-                    # Dentro del bloque "global_secondary_indexes"
+                    # On-demand throughput configuration inside the GSI block
                     on_demand_throughput = {
                     max_write_request_units = 2
                     max_read_request_units  = 2
                     }
                   }
                 ]
-          # Fuera del bloque "global_secondary_indexes"
+          # On-demand throughput configuration at the table level
           on_demand_throughput = {
                   max_write_request_units = 2
                   max_read_request_units  = 2
                 }
           ```
 important_notes: |
-  - **ℹ️ Declare Secondary KMS Provider:** Requires a second provider to create the KMS encryption key for the table, or reference it through a datasource.
+  - **ℹ️ Declare Secondary KMS Provider:** For table replication, you must declare a secondary AWS provider, as each replica needs a regional KMS key, either newly created or referenced via a datasource.
   - **ℹ️ Global vs Local Index Performance:** Understand the performance difference between global and local indexes, and use cases requiring intensive indexing.
-  - **ℹ️ Avoid Overly Permissive AWS Principal:** Do not use `"*"` as the AWS Principal, as it is too permissive and will be rejected by the AWS API.
-  - **ℹ️ Disable Resource Removal:** Disables the ability to remove a resource - set `parameter = -1` to deactivate the resource
-input_table: |
+  - **ℹ️ Avoid Overly Permissive AWS Principal:** When defining a resource policy for a table, Do not use `"*"` as the AWS Principal, as it is too permissive and will be rejected by the AWS API.
+  - **ℹ️ Disable Resource Removal:** Once enabled, the On-Demand Throughput feature cannot be removed; set `max_write_request_units` and `max_read_request_units` to `-1` to disable it. This is due to how the module manages state.
   | hash_key | The attribute to use as the hash (partition) key. Must also be defined as an attribute | `string` | `null` | no |
   | range_key | The attribute to use as the range (sort) key. Must also be defined as an attribute | `string` | `null` | no |
   | billing_mode | Controls how you are billed for read/write throughput and how you manage capacity. | `string` | `"PAY_PER_REQUEST"` | no |
