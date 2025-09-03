@@ -10,11 +10,11 @@ The Terraform wrapper for AWS's DynamoDB service simplifies the configuration of
 
 ### ✨ Features
 
-- 📈 [Index Autoscaling](#index-autoscaling) - It allows defining an auto-scaling policy for indexes to adapt to different use cases.
+- 📈 [Index Autoscaling](#index-autoscaling) - Allows to define an auto-scaling policy for indexes to adapt to different use cases.
 
 - 🌍 [Replication in another Region](#replication-in-another-region) - Enable global replication of tables in the specified regions.
 
-- 📚 [Declaration of secondary global and local indexes](#declaration-of-secondary-global-and-local-indexes) - It allows defining secondary indexes in the table.
+- 📚 [Declaration of secondary global and local indexes](#declaration-of-secondary-global-and-local-indexes) - Allows to define secondary indexes in the table.
 
 - 📄 [Define resource policy in the table](#define-resource-policy-in-the-table) - Allows you to define fine-grained access permissions on the table.
 
@@ -25,7 +25,7 @@ The Terraform wrapper for AWS's DynamoDB service simplifies the configuration of
 ### 🔗 External Modules
 | Name | Version |
 |------|------:|
-| [terraform-aws-modules/dynamodb-table/aws](https://github.com/terraform-aws-modules/dynamodb-table-aws) | 5.0.0 |
+| <a href="https://github.com/terraform-aws-modules/terraform-aws-dynamodb-table" target="_blank">terraform-aws-modules/dynamodb-table/aws</a> | 5.0.0 |
 
 
 
@@ -65,7 +65,7 @@ dynamodb_defaults = var.dynamodb_defaults
 ## 🔧 Additional Features Usage
 
 ### Index Autoscaling
-It allows defining an auto-scaling policy for indexes to adapt to different use cases.
+Allows to define an auto-scaling policy for indexes to adapt to different use cases.
 
 
 <details><summary>Configuration Code</summary>
@@ -138,7 +138,7 @@ dynamodb_parameters = {
 
 
 ### Declaration of secondary global and local indexes
-It allows defining secondary indexes in the table.
+Allows to define secondary indexes in the table.
 
 
 <details><summary>Configuration Code</summary>
@@ -245,44 +245,43 @@ on_demand_throughput = {
 
 
 ## 📑 Inputs
-| Name                                  | Description                                                                                                         | Type     | Default                                                                           | Required |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------- | -------- |
-| hash_key                              | The attribute to use as the hash (partition) key. Must also be defined as an attribute                              | `string` | `null`                                                                            | no       |
-| range_key                             | The attribute to use as the range (sort) key. Must also be defined as an attribute                                  | `string` | `null`                                                                            | no       |
-| billing_mode                          | Controls how you are billed for read/write throughput and how you manage capacity.                                  | `string` | `"PAY_PER_REQUEST"`                                                               | no       |
-| table_class                           | The storage class of the table.                                                                                     | `string` | `null`                                                                            | no       |
-| read_capacity                         | The number of read units for this table.                                                                            | `number` | `null`                                                                            | no       |
-| write_capacity                        | The number of write units for this table.                                                                           | `number` | `null`                                                                            | no       |
-| attributes                            | List of nested attribute definitions. Only required for hash_key and range_key attributes.                          | `null`   | `[]`                                                                              | no       |
-| autoscaling_defaults                  | A map of default autoscaling settings                                                                               | `map`    | ```{ scale_in_cooldown  = 0  scale_out_cooldown = 0  target_value       = 70 }``` | no       |
-| autoscaling_enabled                   | Whether or not to enable autoscaling.                                                                               | `bool`   | `false`                                                                           | no       |
-| autoscaling_indexes                   | A map of index autoscaling configurations.                                                                          | `null`   | `{}`                                                                              | no       |
-| autoscaling_read                      | A map of read autoscaling settings. max_capacity is the only required key.                                          | `map`    | `{}`                                                                              | no       |
-| autoscaling_write                     | A map of write autoscaling settings. max_capacity is the only required key.                                         | `map`    | `{}`                                                                              | no       |
-| create_table                          | Controls if DynamoDB table and associated resources are created                                                     | `bool`   | `false`                                                                           | no       |
-| global_secondary_indexes              | Describe a GSI for the table; subject to the normal limits on the number of GSIs, projected attributes, etc.        | `any`    | `null`                                                                            | no       |
-| local_secondary_indexes               | Describe an LSI on the table; these can only be allocated at creation.                                              | `any`    | `null`                                                                            | no       |
-| name                                  | Name of the DynamoDB table                                                                                          | `string` | `null`                                                                            | no       |
-| point_in_time_recovery_enabled        | Whether to enable point-in-time recovery                                                                            | `bool`   | `false`                                                                           | no       |
-| point_in_time_recovery_period_in_days | Number of preceding days for which continuous backups are taken and maintained. Default 35                          | `number` | `null`                                                                            | no       |
-| replica_regions                       | Region names for creating replicas for a global DynamoDB table.                                                     | `any`    | `null`                                                                            | no       |
-| server_side_encryption_enabled        | Whether or not to enable encryption at rest using an AWS managed KMS customer master key (CMK)                      | `bool`   | `false`                                                                           | no       |
-| server_side_encryption_kms_key_arn    | The ARN of the CMK that should be used for the AWS KMS encryption.                                                  | `string` | `null`                                                                            | no       |
-| stream_enabled                        | Indicates whether Streams are to be enabled                                                                         | `bool`   | `false`                                                                           | no       |
-| stream_view_type                      | When an item in the table is modified, StreamViewType determines what information is written to the table's stream. | `string` | `null`                                                                            | no       |
-| tags                                  | A map of tags to add to all resources                                                                               | `map`    | `{}`                                                                              | no       |
-| timeouts                              | Updated Terraform resource management timeouts                                                                      | `map`    | `{}`                                                                              | no       |
-| ttl_attribute_name                    | The name of the table attribute to store the TTL timestamp in                                                       | `string` | `""`                                                                              | no       |
-| ttl_enabled                           | Indicates whether ttl is enabled                                                                                    | `bool`   | `false`                                                                           | no       |
-| deletion_protection_enabled           | Enables deletion protection for table                                                                               | `bool`   | `null`                                                                            | no       |
-| import_table                          | Configurations for importing s3 data into a new table                                                               | `any`    | `{}`                                                                              | no       |
-| restore_date_time                     | Time of the point-in-time recovery point to restore.                                                                | `string` | `null`                                                                            | no       |
-| restore_source_name                   | Name of the table to restore. Must match the name of an existing table.                                             | `string` | `null`                                                                            | no       |
-| restore_source_table_arn              | ARN of the source table to restore. Must be supplied for cross-region restores.                                     | `string` | `null`                                                                            | no       |
-| restore_to_latest_time                | If set, restores the table to the most recent point-in-time recovery point.                                         | `bool`   | `null`                                                                            | no       |
-| resource_policy                       | (Optional) The JSON definition of the resource-based policy.                                                        | `string` | `null`                                                                            | no       |
-| region                                | Region where this resource will be managed. Defaults to the Region set in the provider configuration                | `string` | `null`                                                                            | no       |
-| on_demand_throughput                  | (Optional) Sets the maximum number of read and write units for the specified on-demand table.                       | `any`    | `{}`                                                                              | no       |
+| Name                                  | Description                                                                                                         | Type     | Default                                                                | Required |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------- | -------- |
+| create_table                          | Controls if DynamoDB table and associated resources are created                                                     | `bool`   | `true`                                                                 | no       |
+| name                                  | Name of the DynamoDB table                                                                                          | `string` | `"${local.common_name}-${each.key}"`                                   | no       |
+| attributes                            | List of nested attribute definitions. Only required for hash_key and range_key attributes.                          | `list`   | `[]`                                                                   | no       |
+| hash_key                              | The attribute to use as the hash (partition) key. Must also be defined as an attribute                              | `string` | `null`                                                                 | no       |
+| range_key                             | The attribute to use as the range (sort) key. Must also be defined as an attribute                                  | `string` | `null`                                                                 | no       |
+| billing_mode                          | Controls how you are billed for read/write throughput and how you manage capacity.                                  | `string` | `"PAY_PER_REQUEST"`                                                    | no       |
+| write_capacity                        | The number of write units for this table.                                                                           | `number` | `null`                                                                 | no       |
+| read_capacity                         | The number of read units for this table.                                                                            | `number` | `null`                                                                 | no       |
+| point_in_time_recovery_enabled        | Whether to enable point-in-time recovery                                                                            | `bool`   | `false`                                                                | no       |
+| point_in_time_recovery_period_in_days | Number of preceding days for which continuous backups are taken and maintained. Default 35                          | `number` | `null`                                                                 | no       |
+| ttl_enabled                           | Indicates whether ttl is enabled                                                                                    | `bool`   | `false`                                                                | no       |
+| ttl_attribute_name                    | The name of the table attribute to store the TTL timestamp in                                                       | `string` | `""`                                                                   | no       |
+| global_secondary_indexes              | Describe a GSI for the table; subject to the normal limits on the number of GSIs, projected attributes, etc.        | `list`   | `[]`                                                                   | no       |
+| local_secondary_indexes               | Describe an LSI on the table; these can only be allocated at creation.                                              | `list`   | `[]`                                                                   | no       |
+| replica_regions                       | Region names for creating replicas for a global DynamoDB table.                                                     | `list`   | `[]`                                                                   | no       |
+| stream_enabled                        | Indicates whether Streams are to be enabled                                                                         | `bool`   | `false`                                                                | no       |
+| stream_view_type                      | When an item in the table is modified, StreamViewType determines what information is written to the table's stream. | `string` | `null`                                                                 | no       |
+| server_side_encryption_enabled        | Whether or not to enable encryption at rest using an AWS managed KMS customer master key (CMK)                      | `bool`   | `false`                                                                | no       |
+| server_side_encryption_kms_key_arn    | The ARN of the CMK that should be used for the AWS KMS encryption.                                                  | `string` | `null`                                                                 | no       |
+| timeouts                              | Updated Terraform resource management timeouts                                                                      | `map`    | `{ create = "10m", update = "60m", delete = "10m" }`                   | no       |
+| autoscaling_enabled                   | Whether or not to enable autoscaling.                                                                               | `bool`   | `false`                                                                | no       |
+| autoscaling_defaults                  | A map of default autoscaling settings                                                                               | `map`    | `{ scale_in_cooldown = 0, scale_out_cooldown = 0, target_value = 70 }` | no       |
+| autoscaling_read                      | A map of read autoscaling settings. max_capacity is the only required key.                                          | `map`    | `{}`                                                                   | no       |
+| autoscaling_write                     | A map of write autoscaling settings. max_capacity is the only required key.                                         | `map`    | `{}`                                                                   | no       |
+| autoscaling_indexes                   | A map of index autoscaling configurations.                                                                          | `map`    | `{}`                                                                   | no       |
+| table_class                           | The storage class of the table.                                                                                     | `string` | `null`                                                                 | no       |
+| deletion_protection_enabled           | Enables deletion protection for table                                                                               | `bool`   | `null`                                                                 | no       |
+| import_table                          | Configurations for importing s3 data into a new table                                                               | `map`    | `{}`                                                                   | no       |
+| restore_date_time                     | Time of the point-in-time recovery point to restore.                                                                | `string` | `null`                                                                 | no       |
+| restore_source_name                   | Name of the table to restore. Must match the name of an existing table.                                             | `string` | `null`                                                                 | no       |
+| restore_source_table_arn              | ARN of the source table to restore. Must be supplied for cross-region restores.                                     | `string` | `null`                                                                 | no       |
+| restore_to_latest_time                | If set, restores the table to the most recent point-in-time recovery point.                                         | `bool`   | `null`                                                                 | no       |
+| resource_policy                       | (Optional) The JSON definition of the resource-based policy.                                                        | `string` | `null`                                                                 | no       |
+| region                                | Region where this resource will be managed. Defaults to the Region set in the provider configuration                | `string` | `null`                                                                 | no       |
+| on_demand_throughput                  | (Optional) Sets the maximum number of read and write units for the specified on-demand table.                       | `map`    | `{}`                                                                   | no       |
 
 
 
@@ -291,10 +290,10 @@ on_demand_throughput = {
 
 
 ## ⚠️ Important Notes
-- **ℹ️ Declare Secondary KMS Provider:** For table replication, you must declare a secondary AWS provider, as each replica needs a regional KMS key, either newly created or referenced via a datasource.
-- **ℹ️ Global vs Local Index Performance:** Understand the performance difference between global and local indexes, and use cases requiring intensive indexing.
-- **ℹ️ Avoid Overly Permissive AWS Principal:** When defining a resource policy for a table, Do not use `"*"` as the AWS Principal, as it is too permissive and will be rejected by the AWS API.
-- **ℹ️ Managing On-Demand Throughput Setting:** Once enabled, the On-Demand Throughput feature cannot be removed; set `max_write_request_units` and `max_read_request_units` to `-1` to disable it. This is due to how the module manages state.
+- **⚠️ Declare Secondary KMS Provider:** For table replication, you must declare a secondary AWS provider, as each replica needs a regional KMS key, either newly created or referenced via a datasource.
+- **⚠️ Global vs Local Index Performance:** Understand the performance difference between global and local indexes, and use cases requiring intensive indexing.
+- **⚠️ Avoid Overly Permissive AWS Principal:** When defining a resource policy for a table, Do not use `"*"` as the AWS Principal, as it is too permissive and will be rejected by the AWS API.
+- **⚠️ Managing On-Demand Throughput Setting:** Once enabled, the On-Demand Throughput feature cannot be removed; set `max_write_request_units` and `max_read_request_units` to `-1` to disable it. This is due to how the module manages state.
 
 
 
