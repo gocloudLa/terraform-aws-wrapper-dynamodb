@@ -11,7 +11,6 @@ module "wrapper_dynamodb" {
   source = "../../"
 
   metadata = local.metadata
-  project  = local.project
 
   dynamodb_parameters = {
     "example" = {
