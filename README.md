@@ -199,7 +199,7 @@ resource_policy = jsonencode({
               "dynamodb:Query",
               "dynamodb:Scan"
             ],
-            Resource = "arn:aws:dynamodb:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:table/${local.common_name}-${local.project}-<object_key>"
+            Resource = "arn:aws:dynamodb:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:table/${local.common_name}-<object_key>"
           }
         ]
       })
