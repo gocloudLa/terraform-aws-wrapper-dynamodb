@@ -198,7 +198,7 @@ module "wrapper_dynamodb" {
               "dynamodb:Query",
               "dynamodb:Scan"
             ],
-            Resource = "arn:aws:dynamodb:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:table/${local.common_name}-${local.project}-example-resource-based-policy"
+            Resource = "arn:aws:dynamodb:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:table/${local.common_name}-example-resource-based-policy"
           }
         ]
       })
