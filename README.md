@@ -282,6 +282,7 @@ on_demand_throughput = {
 | resource_policy                       | (Optional) The JSON definition of the resource-based policy.                                                        | `string` | `null`                                                                 | no       |
 | region                                | Region where this resource will be managed. Defaults to the Region set in the provider configuration                | `string` | `null`                                                                 | no       |
 | on_demand_throughput                  | (Optional) Sets the maximum number of read and write units for the specified on-demand table.                       | `map`    | `{}`                                                                   | no       |
+| tags                                  | A map of tags to assign to resources.                                                                               | `map`    | `{}`                                                                   | no       |
 
 
 
