@@ -47,5 +47,5 @@ module "dynamodb" {
   region                      = try(each.value.region, var.dynamodb_defaults.region, null)
   on_demand_throughput        = try(each.value.on_demand_throughput, var.dynamodb_defaults.on_demand_throughput, {})
 
-  tags = local.common_tags
+  tags = merge(local.common_tags, try(each.value.tags, var.dynamodb_defaults.tags, null))
 }
