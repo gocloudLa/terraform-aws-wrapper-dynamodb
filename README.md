@@ -25,7 +25,7 @@ The Terraform wrapper for AWS's DynamoDB service simplifies the configuration of
 ### 🔗 External Modules
 | Name | Version |
 |------|------:|
-| <a href="https://github.com/terraform-aws-modules/terraform-aws-dynamodb-table" target="_blank">terraform-aws-modules/dynamodb-table/aws</a> | 5.0.0 |
+| <a href="https://github.com/terraform-aws-modules/terraform-aws-dynamodb-table" target="_blank">terraform-aws-modules/dynamodb-table/aws</a> | 5.1.0 |
 
 
 

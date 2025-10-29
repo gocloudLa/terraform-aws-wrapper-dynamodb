@@ -1,7 +1,7 @@
 module "dynamodb" {
   for_each = var.dynamodb_parameters
   source   = "terraform-aws-modules/dynamodb-table/aws"
-  version  = "5.0.0"
+  version  = "5.1.0"
 
   create_table                          = true
   name                                  = "${local.common_name}-${each.key}"
