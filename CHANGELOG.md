@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/compare/v1.0.1...v1.0.2) (2025-11-25)
+
+
+### Bug Fixes
+
+* **deps:** bump terraform-aws-modules/dynamodb-table/aws from 5.0.0 to 5.1.0 in the all-terraform-dependencies group across 1 directory ([#5](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/issues/5)) ([eaa22b6](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/commit/eaa22b6cb013ca859723da46d59466f6f55c5989))
+
 ## [1.0.1](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/compare/v1.0.0...v1.0.1) (2025-10-11)
 
 
