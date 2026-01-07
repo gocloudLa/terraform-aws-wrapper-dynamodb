@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/compare/v1.0.1...v1.1.0) (2026-01-07)
+
+
+### Features
+
+* **module:** add custon name dynamodb ([#8](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/issues/8)) ([4546233](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/commit/45462337e4bc5453623622e42b8803edb7858ed9))
+
+
+### Bug Fixes
+
+* **deps:** bump terraform-aws-modules/dynamodb-table/aws from 5.0.0 to 5.1.0 in the all-terraform-dependencies group across 1 directory ([#5](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/issues/5)) ([eaa22b6](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/commit/eaa22b6cb013ca859723da46d59466f6f55c5989))
+
 ## [1.0.1](https://github.com/gocloudLa/terraform-aws-wrapper-dynamodb/compare/v1.0.0...v1.0.1) (2025-10-11)
 
 
