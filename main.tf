@@ -4,7 +4,7 @@ module "dynamodb" {
   version  = "5.1.0"
 
   create_table                          = true
-  name                                  = try(each.value.dynamodb_name, "${local.common_name}-${each.key}")
+  name                                  = try(each.value.name, "${local.common_name}-${each.key}")
   attributes                            = try(each.value.attributes, var.dynamodb_defaults.attributes, [])
   hash_key                              = try(each.value.hash_key, var.dynamodb_defaults.hash_key, null)
   range_key                             = try(each.value.range_key, var.dynamodb_defaults.range_key, null)
