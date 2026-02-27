@@ -46,6 +46,8 @@ module "dynamodb" {
   resource_policy             = try(each.value.resource_policy, var.dynamodb_defaults.resource_policy, null)
   region                      = try(each.value.region, var.dynamodb_defaults.region, null)
   on_demand_throughput        = try(each.value.on_demand_throughput, var.dynamodb_defaults.on_demand_throughput, {})
+  warm_throughput             = try(each.value.warm_throughput, var.dynamodb_defaults.warm_throughput, {})
+  global_table_witness        = try(each.value.global_table_witness, var.dynamodb_defaults.global_table_witness, null)
 
   tags = merge(local.common_tags, try(each.value.tags, var.dynamodb_defaults.tags, null))
 }
