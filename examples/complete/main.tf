@@ -141,7 +141,7 @@ module "wrapper_dynamodb" {
 
     "example-resource-based-policy" = {
       hash_key         = "id"
-      key_schema       = "title"
+      range_key        = "title"
       stream_enabled   = true
       stream_view_type = "NEW_AND_OLD_IMAGES"
 
