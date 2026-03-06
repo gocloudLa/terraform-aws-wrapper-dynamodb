@@ -3,7 +3,7 @@ resource "aws_kms_key" "primary" {
 }
 
 resource "aws_kms_key" "secondary" {
-  provider    = aws.use2
+  provider    = aws.use1
   description = "CMK for secondary region"
 }
 
@@ -133,7 +133,7 @@ module "wrapper_dynamodb" {
       ]
 
       replica_regions = [{
-        region_name    = "us-east-2"
+        region_name    = "us-east-1"
         kms_key_arn    = aws_kms_key.secondary.arn
         propagate_tags = true
       }]
@@ -179,7 +179,7 @@ module "wrapper_dynamodb" {
       ]
 
       replica_regions = [{
-        region_name    = "us-east-2"
+        region_name    = "us-east-1"
         kms_key_arn    = aws_kms_key.secondary.arn
         propagate_tags = true
       }]
